@@ -2,7 +2,7 @@ tags:
   - scope
   - method scope
   - variable scope
-langauges:
-  - Ruby
 resources:
   - 0
+languages:
+  - Ruby
