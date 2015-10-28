@@ -1,99 +1,99 @@
-# Method Scope
+# Method Scope Lab
 
 ## Objectives
 
-1. Understand the concept of scope. 
-2. Learn the scope of a method. 
-3. Learn the scope of a local variable.
+1. Define a method that takes in an argument and pass a variable in as that argument. 
+2. Understand that a variable defined inside a method cannot be used outside of that method. 
 
-## Introduction 
+## Instructions
 
-Naming variables is hard, but it is important. We need our code to be as descriptive as possible. Any other developer reading over one of our programs should be able to understand what our code does. A big part of this is having variable (and method) names that are sensical and descriptive. 
+### Part I: Passing a Variable Into a Method
 
-Our variable names should be descriptive of what they hold, but they should also be concise. This can be difficult to achieve. You might even be worrying that you'll run out of unique, descriptive and concise variable names. Don't worry though, all programming languages have what is called **scope**. Scope means that not all variable exist everywhere in a program. If they did, then some variable that you'd be writing in file A, could accidentally overwrite a variable made by your friend in file B. Having a scope for variables allows you to have greater confidence when creating variables that you aren't overwriting someone else's work.
-
-## What is Scope?
-
-Methods in ruby create their own scope. "Scope" refers to the areas of your program in which certain data is available to you. **Any local variable created outside of a method will be unavailable inside of a method. In addition, local variables created inside of a method (i.e. in between the `def` and `end` keywords of a method) 'fall out of scope' once you're outside the method.**
-
-Let's take a look at the following example:
+Open up `lib/catch_phrase.rb`. You should see the following method:
 
 ```ruby
-name = "Joe"
-
-def greeting(name)
-   puts "Hello, #{name}"
+def catch_phrase
+  puts phrase
 end
 ```
 
-In this code snippet, we have a variable, `name`, set equal to a string, `"Joe"`. Then, we define a method, `#greeting` that takes in an argument of name. Are the `name` variable that is set equal to `"Joe"` and the `name` variable we are using as a parameter (or argument) for our `#greeting` method definition the same? 
+Note that the method is trying to `puts` out a variable called `phrase`. 
 
-If we call our greeting method in the following way:
-
-```ruby
-greeting("Sophie")
-```
-
-What do we expect to be outputted to the terminal?
-
-In this case, the above method invocation would `puts` out `Hello, Sophie` to the terminal. It is true that we are setting a variable, `name`, equal to `"Joe"` in this code snippet. But, we are not using *that* variable anywhere else in our code. The `name` argument of the `#greeting` method is just a placeholder. It means: when we call the `#greeting` method with an argument of, say, for example, `"Sophie"`, set the variable `name` *inside of the method* equal to that string. 
-
-The `name` variable inside of the `#greeting` method is different from the `name` variable that we set equal to `"Joe"` outside of the method. The `#greeting` method has it's own scope and variables inside of it don't know about variables outside of it and vice versa. 
-
-## Method Scope in Ruby
-
-Think of a method as a castle. The `def` and `end` keywords are like the gates that keep out the barbarian hordes, dragons, etc. Let's take a look:
+Let's take a look at the test for this method in `spec/catch_phrase_spec.rb`:
 
 ```ruby
-evil_monster = "Bowser"
-
-def princess_peaches_castle
-  puts "#{evil_monster} is trying to kidnap Princess Peach!"
+describe "#catch_phrase" do 
+  it "puts out a catch phrase" do 
+    phrase = "It's-a me, Mario!"
+    expect{catch_phrase}.to output("It's-a me, Mario!\n").to_stdout
+  end
 end
 ```
 
-We've defined the variable `evil_monster` *outside* of the method, `princess_peaches_castle`. Then, we try to call on the `evil_monster` variable inside that method. Watch what happens when we invoke the method:
+Go ahead and run the test for this method only by typing `spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You should see the following error:
 
 ```ruby
-princess_peaches_castle
-  #=> NameError: undefined local variable or method `evil_monster' for main:Object
+NameError:
+       undefined local variable or method `phrase' for #<RSpec::ExampleGroups::CatchPhrase:0x007f87b9cf04c0>
 ```
 
-The `evil_monster` variable is out of scope for this method. The method can't access it **unless we pass it in as an argument**.
+This error is occuring because the code inside the `#catch_phrase` method is trying to use the `phrase` variable **but** we defined this variable on line 27 of our test. In other words, this variable is being defined *outside of the method*. Our method doesn't have access to it! **It is out of scope.** Let's fix it!
 
-If we define our method to accept an argument, we can pass our variable into the method and the method will be able to operate on/use that variable. Let's take a look:
+We need to pass `phrase` into our `#catch_phrase` as an argument. Let's do it:
 
-```ruby
-evil_monster = "Bowser"
-
-def princess_peaches_castle(evil_monster)
-  puts "#{evil_monster} is trying to kidnap Princess Peach!"
-end
-
-princess_peaches_castle(evil_monster)
-#> "Bowser is trying to kidnap Princess Peach!"
-
-```
-
-And now Mario can start his adventure.
-
-So far, we've seen that variables defined outside of methods are not available inside methods (unless we pass them in as arguments). This works the other way around as well: variables defined inside of methods are not available outside of those methods. Let's take a look. 
-
-If we define the following method to include a local variable:
+1. Re-define the `#catch_phrase` method to take in an argument of a phrase. 
+2. Change the test in `spec/catch_phrase_spec.rb` to match the following:
 
 ```ruby
-def practicing_method_scope
-  im_trapped_in_the_method = "You can't access me outside this method!"
+require "spec_helper"
+describe "#catch_phrase" do 
+  it "puts out a catch phrase" do 
+    phrase = "It's-a me, Mario!"
+    expect{catch_phrase(phrase)}.to output("It's-a me, Mario!\n").to_stdout
+  end
 end
 ```
 
-Trying to access that variable elsewhere in our program, *outside of this method*, will raise the following error:
+### Part II: Understanding Method Scope
+
+Open up `lib/rescue_princess_peach.rb` and take a look at the following method:
 
 ```ruby
-im_trapped_in_the_method
-#=> NameError: undefined local variable or method `im_trapped_in_the_method' for main:Object
+def rescue_princess_peach
+  status = "rescued"
+  puts "Hooray! Mario has rescued Princess Peach."
+end
 ```
 
-## Conclusion
+Notice that the body of this method is setting a variable, `status` equal to a value of `"rescued"`. Do you think we will be able to access this variable outside of the method? Let's find out!
 
-Remember: A variable defined inside a method can't leave that method. It is not available to your program outside of the method. A variable designed outside of a method can only be made available to the code inside the method if you pass that variable in to the method as an argument. 
+1 . Comment back in the follow lines in your `lib/rescue_princess_peach.rb` file: 
+
+```ruby
+rescue_princess_peach
+puts status
+```
+
+2 . Run the file with `ruby lib/rescue_princess_peach.rb` in your terminal. You should see the following:
+
+```ruby
+Hooray! Mario has rescued Princess Peach.
+lib/rescue_princess_peach.rb:12:in `<main>': undefined local variable or method `status' for main:Object (NameError)
+```
+
+We are getting a NameError because `status` is undefined. Wait a minute, you might be wondering. Didn't we define `status` instide the `#rescue_princess_peach` method? We did, but **variables defined inside a method are not available outside of that method**. 
+
+Run the test suite and you'll see that we are passing all of our tests. If you open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following test:
+
+```ruby
+require "spec_helper"
+
+describe "#rescue_princess_peach" do
+  it "outputs a message and sets a variable, status, that is not available outside of this method" do
+    expect{rescue_princess_peach}.to output("Hooray! Mario has rescued Princess Peach.\n").to_stdout 
+    expect{puts status}.to raise_error(NameError)
+  end 
+end
+```
+
+Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to be met with a `NameError`. Our program, outside of the `#rescue_princess_peach`method, just doesn't know what it is. 
