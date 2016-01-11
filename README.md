@@ -30,7 +30,7 @@ describe "#catch_phrase" do
 end
 ```
 
-Go ahead and run the test for this method only by typing `spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You should see the following error:
+Go ahead and run the test for this method only by typing `rspec spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You should see the following error:
 
 ```ruby
 NameError:
@@ -67,7 +67,7 @@ end
 
 Notice that the body of this method is setting a variable, `status` equal to a value of `"rescued"`. Do you think we will be able to access this variable outside of the method? Let's find out!
 
-1 . Comment back in the follow lines in your `lib/rescue_princess_peach.rb` file: 
+1 . Comment back in the following lines in your `lib/rescue_princess_peach.rb` file: 
 
 ```ruby
 rescue_princess_peach
@@ -83,7 +83,7 @@ lib/rescue_princess_peach.rb:12:in `<main>': undefined local variable or method 
 
 We are getting a NameError because `status` is undefined. Wait a minute, you might be wondering. Didn't we define `status` inside the `#rescue_princess_peach` method? We did, but **variables defined inside a method are not available outside of that method**. 
 
-**Go back and comment on lines 11 and 12 of `rescue_princess_peach.rb`.**
+**Go back and comment out lines 11 and 12 of `rescue_princess_peach.rb`.**
 
 Run the test suite and you'll see that we are passing all of our tests. If you open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following test:
 
@@ -99,3 +99,4 @@ end
 ```
 
 Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to be met with a `NameError`. Our program, outside of the `#rescue_princess_peach`method, just doesn't know what it is. 
+<a href='https://learn.co/lessons/method-scope-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
