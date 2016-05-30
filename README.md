@@ -67,7 +67,7 @@ end
 
 Notice that the body of this method is setting a variable, `status` equal to a value of `"rescued"`. Do you think we will be able to access this variable outside of the method? Let's find out!
 
-1 . Comment back in the following lines in your `lib/rescue_princess_peach.rb` file: 
+1 . Comment back (delete the # symbol) in the following lines in your `lib/rescue_princess_peach.rb` file: 
 
 ```ruby
 rescue_princess_peach
@@ -100,3 +100,5 @@ end
 
 Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to be met with a `NameError`. Our program, outside of the `#rescue_princess_peach`method, just doesn't know what it is. 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/method-scope-lab' title='Method Scope Lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/method-scope-lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
