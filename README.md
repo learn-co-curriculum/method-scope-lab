@@ -2,8 +2,6 @@
 
 ## Objectives
 
-hello!
-
 1. Define a method that takes in an argument and pass a variable in as that argument. 
 2. Understand that a variable defined inside a method cannot be used outside of that method. 
 
