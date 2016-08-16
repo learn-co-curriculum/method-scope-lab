@@ -2,6 +2,8 @@
 
 ## Objectives
 
+hello!
+
 1. Define a method that takes in an argument and pass a variable in as that argument. 
 2. Understand that a variable defined inside a method cannot be used outside of that method. 
 
@@ -100,3 +102,5 @@ end
 
 Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to be met with a `NameError`. Our program, outside of the `#rescue_princess_peach`method, just doesn't know what it is. 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/method-scope-lab' title='Method Scope Lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/method-scope-lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
