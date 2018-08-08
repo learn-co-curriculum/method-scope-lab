@@ -67,7 +67,7 @@ end
 
 Notice that the body of this method is setting a variable, `status` equal to a value of `"rescued"`. Do you think we will be able to access this variable outside of the method? Let's find out!
 
-1 . Comment back in the following lines in your `lib/rescue_princess_peach.rb` file: 
+1 . Un-comment the following lines in your `lib/rescue_princess_peach.rb` file: 
 
 ```ruby
 rescue_princess_peach
