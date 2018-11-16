@@ -30,14 +30,18 @@ describe "#catch_phrase" do
 end
 ```
 
-Go ahead and run the test for this method only by typing `rspec spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You should see the following error:
+Go ahead and run the test for this method only by typing `rspec
+spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You
+should see the following error:
 
 ```ruby
 NameError:
-       undefined local variable or method `phrase' for #<RSpec::ExampleGroups::CatchPhrase:0x007f87b9cf04c0>
+  undefined local variable or method `phrase' for #<RSpec::ExampleGroups::CatchPhrase:0x007f87b9cf04c0>
 ```
 
-This error is occurring because the code inside the `#catch_phrase` method is trying to use the `phrase` variable **but** we defined this variable on line 5 of our test. In other words, this variable is being defined *outside of the method*. Our method doesn't have access to it! **It is out of scope.** Let's fix it!
+This error is occurring because the code inside the `#catch_phrase` method is
+trying to use the `phrase` variable **but** it's not present inside the _scope_
+of the `#catch_phrase` method. **It is out of scope.** Let's fix it!
 
 We need to pass `phrase` into our `#catch_phrase` as an argument. Let's do it:
 
@@ -65,7 +69,9 @@ def rescue_princess_peach
 end
 ```
 
-Notice that the body of this method is setting a variable, `status` equal to a value of `"rescued"`. Do you think we will be able to access this variable outside of the method? Let's find out!
+Notice that the body of this method is setting a variable, `status` equal to a
+value of `"rescued"`. Do you think we will be able to access this variable
+outside of the method? Let's find out!
 
 1 . Un-comment the following lines in your `lib/rescue_princess_peach.rb` file:
 
@@ -81,11 +87,17 @@ Hooray! Mario has rescued Princess Peach.
 lib/rescue_princess_peach.rb:12:in `<main>': undefined local variable or method `status' for main:Object (NameError)
 ```
 
-We are getting a NameError because `status` is undefined. Wait a minute, you might be wondering. Didn't we define `status` inside the `#rescue_princess_peach` method? We did, but **variables defined inside a method are not available outside of that method**.
+We are getting a `NameError` because `status` is undefined. Wait a minute, you
+might be wondering. Didn't we define `status` inside the
+`#rescue_princess_peach` method? We did, but **variables defined inside a
+method are not available outside of that method**. They are only available
+within the `scope` of that method.
 
 **Go back and comment out lines 11 and 12 of `rescue_princess_peach.rb`.**
 
-Run the test suite and you'll see that we are passing all of our tests. If you open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following test:
+Run the test suite and you'll see that we are passing all of our tests. If you
+open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following
+test:
 
 ```ruby
 require "spec_helper"
@@ -98,7 +110,9 @@ describe "#rescue_princess_peach" do
 end
 ```
 
-Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to be met with a `NameError`. Our program, outside of the `#rescue_princess_peach`method, just doesn't know what it is.
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/method-scope-lab' title='Method Scope Lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
+Notice the last expectation of our test: `expect{puts status}.to
+raise_error(NameError)`. We expect any attempt to use the `status` variable to
+be met with a `NameError`. Our program, outside of the
+`#rescue_princess_peach`method, just doesn't know what it is.
 
 <p class='util--hide'>View <a href='https://learn.co/lessons/method-scope-lab'>Method Scope Lab</a> on Learn.co and start learning to code for free.</p>
