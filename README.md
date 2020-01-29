@@ -84,7 +84,7 @@ puts status
 
 ```ruby
 Hooray! Mario has rescued Princess Peach.
-lib/rescue_princess_peach.rb:12:in `<main>': undefined local variable or method `status' for main:Object (NameError)
+lib/rescue_princess_peach.rb:9:in `<main>': undefined local variable or method `status' for main:Object (NameError)
 ```
 
 We are getting a `NameError` because `status` is undefined. Wait a minute, you
