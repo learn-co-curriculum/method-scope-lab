@@ -93,7 +93,7 @@ might be wondering. Didn't we define `status` inside the
 method are not available outside of that method**. They are only available
 within the `scope` of that method.
 
-**Go back and comment out lines 11 and 12 of `rescue_princess_peach.rb`.**
+**Go back and comment out lines 8 and 9 of `rescue_princess_peach.rb`.**
 
 Run the test suite and you'll see that we are passing all of our tests. If you
 open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following
