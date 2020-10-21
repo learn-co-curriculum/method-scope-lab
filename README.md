@@ -73,7 +73,8 @@ Notice that the body of this method is setting a variable, `status` equal to a
 value of `"rescued"`. Do you think we will be able to access this variable
 outside of the method? Let's find out!
 
-1 . Un-comment the following lines in your `lib/rescue_princess_peach.rb` file:
+1 . Un-comment the lines below in your `lib/rescue_princess_peach.rb` file. You
+can do this by removing the `#` at the front of each line.
 
 ```ruby
 rescue_princess_peach
@@ -93,7 +94,8 @@ might be wondering. Didn't we define `status` inside the
 method are not available outside of that method**. They are only available
 within the `scope` of that method.
 
-**Go back and comment out lines 8 and 9 of `rescue_princess_peach.rb`.**
+**Go back and comment out lines 8 and 9 of `rescue_princess_peach.rb` by
+adding back the `#`s.**
 
 Run the test suite and you'll see that we are passing all of our tests. If you
 open up the `spec/rescue_princess_peach_spec.rb` file, you'll see the following
