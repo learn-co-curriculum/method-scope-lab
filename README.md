@@ -30,11 +30,10 @@ describe "#catch_phrase" do
 end
 ```
 
-Go ahead and run the test for this method only by typing `rspec
-spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You
+Go ahead and run the test for this method only by typing `rspec spec/catch_phrase_spec.rb` into your terminal in the directory of this lab. You
 should see the following error:
 
-```ruby
+```txt
 NameError:
   undefined local variable or method `phrase' for #<RSpec::ExampleGroups::CatchPhrase:0x007f87b9cf04c0>
 ```
@@ -83,7 +82,7 @@ puts status
 
 2 . Run the file with `ruby lib/rescue_princess_peach.rb` in your terminal. You should see the following:
 
-```ruby
+```txt
 Hooray! Mario has rescued Princess Peach.
 lib/rescue_princess_peach.rb:9:in `<main>': undefined local variable or method `status' for main:Object (NameError)
 ```
@@ -112,7 +111,6 @@ describe "#rescue_princess_peach" do
 end
 ```
 
-Notice the last expectation of our test: `expect{puts status}.to
-raise_error(NameError)`. We expect any attempt to use the `status` variable to
+Notice the last expectation of our test: `expect{puts status}.to raise_error(NameError)`. We expect any attempt to use the `status` variable to
 be met with a `NameError`. Our program, outside of the
 `#rescue_princess_peach`method, just doesn't know what it is.
